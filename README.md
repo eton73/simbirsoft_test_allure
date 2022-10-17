@@ -1,1 +1,1 @@
-# simbirsoft_test_allure
+# simbirsoft_test_assured
