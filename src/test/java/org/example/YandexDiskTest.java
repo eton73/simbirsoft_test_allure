@@ -11,16 +11,16 @@ public class YandexDiskTest {
     private static final String PARAM_FIELDS = "fields";
 
     @Test
-    public void listAcceptedDirsAndFilesTest() {
+    public void listAcceptedFilesTest() {
         Response response = RestAssured.given()
                 .header(HEADER_AUTHORIZATION, String.format("OAuth %s", ConfProperties.getProperty("OAuth_token")))
                 .param(PARAM_LIMIT, 1000)
-                .param(PARAM_FIELDS, "name,type")
+                .param(PARAM_FIELDS, "items.name,items.type")
                 .when().get("https://cloud-api.yandex.net/v1/disk/resources/files");
 
         response.then().assertThat().statusCode(200);
 
-        System.out.println("Доступные папки и файлы на диске:");
+        System.out.println("Доступные файлы на диске:");
         System.out.println(response.getBody().print());
     }
 
